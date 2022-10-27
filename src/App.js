@@ -14,9 +14,12 @@ class App extends Component {
   componentDidMount(){
     fetch('https://jsonplaceholder.typicode.com/users')
     .then((response) => response.json())
-    .then((users) => this.setState(() => {
-      return {monsters: users}
-    }, () => console.log(this.state) //loggin to make sure state has been updated on a real application we would not do this
+    .then((users) => 
+      this.setState(() => {
+        return {monsters: users}
+    }, 
+    () => 
+      console.log(this.state) //loggin to make sure state has been updated on a real application we would not do this
     ));
   };
 
