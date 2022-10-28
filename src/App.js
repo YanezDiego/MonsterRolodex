@@ -4,36 +4,63 @@ import {Component} from 'react';
 import './App.css';
 
 class App extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      monsters:[]
+      monsters: [],
     };
-  };
+  }
 
-  componentDidMount(){
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then((response) => response.json())
-    .then((users) => 
+  componentDidMount() {
+    this.fetchMonsters();
+  }
+
+  fetchMonsters() {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((users) =>
+        this.setState(() => {
+          return { monsters: users };
+        })
+      );
+  }
+
+  filterOnChange = (event) => {
+    let searchedText = event.target.value.toLowerCase();
+
+    const filteredMonsters = this.state.monsters.filter((monster) => {
+      return monster.name.toLowerCase().includes(searchedText);
+    });
+
+    if (searchedText !== "") {
       this.setState(() => {
-        return {monsters: users}
-    }));
+        return { monsters: filteredMonsters };
+      });
+    } else {
+      this.fetchMonsters();
+    }
   };
 
-  render(){
+  render() {
     return (
       <div className="App">
+        <input
+          className="search-box"
+          type="search"
+          placeholder="search monsters"
+          onChange={this.filterOnChange}
+        />
+
         {this.state.monsters.map((monster) => {
-          return(
+          return (
             <div key={monster.id}>
               <h1>{monster.name}</h1>
             </div>
           );
-          })
-        }
+        })}
       </div>
     );
-  };
+  }
 }
 
 export default App;
