@@ -29,17 +29,6 @@ class App extends Component {
   filterOnChange = (event) => {
     this.setState( () => { return {searchedText: event.target.value.toLowerCase()}});
 
-    // const filteredMonsters = this.state.monsters.filter((monster) => {
-    //   return monster.name.toLowerCase().includes(this.state.searchedText);
-    // });
-
-    // if (searchedText !== "") {
-    //   this.setState(() => {
-    //     return { monsters: filteredMonsters };
-    //   });
-    // } else {
-    //   this.fetchMonsters();
-    // }
   };
 
   render() {
