@@ -8,6 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       monsters: [],
+      searchedText: ''
     };
   }
 
@@ -26,32 +27,40 @@ class App extends Component {
   }
 
   filterOnChange = (event) => {
-    let searchedText = event.target.value.toLowerCase();
+    this.setState( () => { return {searchedText: event.target.value.toLowerCase()}});
 
-    const filteredMonsters = this.state.monsters.filter((monster) => {
-      return monster.name.toLowerCase().includes(searchedText);
-    });
+    // const filteredMonsters = this.state.monsters.filter((monster) => {
+    //   return monster.name.toLowerCase().includes(this.state.searchedText);
+    // });
 
-    if (searchedText !== "") {
-      this.setState(() => {
-        return { monsters: filteredMonsters };
-      });
-    } else {
-      this.fetchMonsters();
-    }
+    // if (searchedText !== "") {
+    //   this.setState(() => {
+    //     return { monsters: filteredMonsters };
+    //   });
+    // } else {
+    //   this.fetchMonsters();
+    // }
   };
 
   render() {
+
+    const {monsters, searchedText} = this.state;
+    const {filterOnChange} = this;
+
+    const filteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLowerCase().includes(searchedText);
+    });
+
     return (
       <div className="App">
         <input
           className="search-box"
           type="search"
           placeholder="search monsters"
-          onChange={this.filterOnChange}
+          onChange={filterOnChange}
         />
 
-        {this.state.monsters.map((monster) => {
+        {filteredMonsters.map((monster) => {
           return (
             <div key={monster.id}>
               <h1>{monster.name}</h1>
