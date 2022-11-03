@@ -1,6 +1,8 @@
 import {Component} from 'react';
 
 import CardList from './components/card-list/card-list.component';
+import SearchBox from './components/search-box/search-box.component';
+
 import './App.css';
 
 class App extends Component {
@@ -26,7 +28,7 @@ class App extends Component {
       );
   }
 
-  filterOnChange = (event) => {
+  OnSearchChange = (event) => {
     this.setState( () => { return {searchedText: event.target.value.toLowerCase()}});
 
   };
@@ -34,7 +36,7 @@ class App extends Component {
   render() {
 
     const {monsters, searchedText} = this.state;
-    const {filterOnChange} = this;
+    const { OnSearchChange } = this;
 
     const filteredMonsters = monsters.filter((monster) => {
       return monster.name.toLowerCase().includes(searchedText);
@@ -42,14 +44,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        <input
-          className="search-box"
-          type="search"
-          placeholder="search monsters"
-          onChange={filterOnChange}
+        <SearchBox className='search-box'
+        OnSearchChange={ OnSearchChange } 
+        placeHolder='search monsters'
         />
-
-        <CardList monsters={ filteredMonsters }/>
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }
