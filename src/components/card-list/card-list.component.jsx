@@ -4,10 +4,18 @@ class CardList extends Component {
 
 
     render(){
-        return(
-            <div>Card List goes Here</div>
-        );
-    };
-};
+        const { monsters } = this.props;
+        
+        return (
+            monsters.map((monster) => {
+               return( 
+                    <div key={monster.id}>
+                    <h1>{monster.name}</h1>
+                    </div>
+                )
+            })
+        );   
+    }
+}
 
 export default CardList;
