@@ -16,3 +16,7 @@ body{
   );
   text-align: center;
 }
+
+.appTitle{
+  font-family: Arial, Helvetica, sans-serif;
+}
