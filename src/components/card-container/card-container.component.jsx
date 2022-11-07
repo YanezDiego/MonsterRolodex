@@ -3,9 +3,9 @@ import { Component } from "react";
 class CardContainer extends Component {
 
     render(){
-        const { name, id, email } = this.props.monsterInfo; 
+        const { id, name, email} = this.props.monsterInfo; 
         return (
-          <div key={this.props.monsterInfo.id}  className='card-container'>
+          <div key={id}  className='card-container'>
             <img
               alt={`monster-${name}`}
               src={`https://robohash.org/${id}?set=set2&size=180x180`}
