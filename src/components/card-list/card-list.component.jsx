@@ -8,13 +8,13 @@ class CardList extends Component {
         const { monsters } = this.props;
         
         return (
-            monsters.map((monster) => {
-               return (
-                 <div className='card-list'>
-                  <CardContainer monster={monster}/>
-                 </div>
-               );
-            })
+            <div className='card-list'>
+                {monsters.map((monster) => {
+                return (  
+                    <CardContainer monsterInfo={monster}/> 
+                );
+                })}
+            </div>
         );   
     }
 }
