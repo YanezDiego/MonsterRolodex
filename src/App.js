@@ -9,11 +9,18 @@ import './App.css';
 const App = () => {
   //setting up state hook
   const [searchField, setSearchField] = useState('');
+  const [monsters, setMonsters] = useState([]);
 
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
     setSearchField(searchFieldString);
   }
+
+  handleOnChange = (event) => {
+    this.setState( () => { 
+      return {searchedText: event.target.value.toLowerCase()}
+    }
+    )};
 
   return (
           <div className="App">
@@ -23,7 +30,7 @@ const App = () => {
               handleSearchChange={onSearchChange}
               placeHolder='search monsters'
              />
-         {/*<CardList monsters={filteredMonsters} /> */}
+         <CardList monsters={filteredMonsters} />
           </div>
         );
 
