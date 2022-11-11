@@ -1,4 +1,4 @@
-import {Component} from 'react';
+//import {Component} from 'react';
 
 import CardList from './components/card-list/card-list.component';
 import SearchBox from './components/search-box/search-box.component';
@@ -6,6 +6,28 @@ import SearchBox from './components/search-box/search-box.component';
 import './App.css';
 
 
+const App = () => {
+  //setting up state hook
+  const [searchField, setSearchField] = useState('');
+
+  const onSearchChange = (event) => {
+    const searchFieldString = event.target.value.toLocaleLowerCase();
+    setSearchField(searchFieldString);
+  }
+
+  return (
+          <div className="App">
+            <h1 className='appTitle'>Monster Rolodex</h1>
+            <SearchBox 
+              className='monsters-search-box'
+              handleSearchChange={onSearchChange}
+              placeHolder='search monsters'
+             />
+         {/*<CardList monsters={filteredMonsters} /> */}
+          </div>
+        );
+
+}
 
 // commenting out this the class section and converted into a functional component
 // this is to practice functional components and how they differ.
