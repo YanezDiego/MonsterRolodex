@@ -1,5 +1,7 @@
 //import {Component} from 'react';
 
+import {useState, useEffect} from 'react'
+
 import CardList from './components/card-list/card-list.component';
 import SearchBox from './components/search-box/search-box.component';
 
@@ -11,16 +13,20 @@ const App = () => {
   const [searchField, setSearchField] = useState('');
   const [monsters, setMonsters] = useState([]);
 
+// use effect takes two argument. 1. a callback FN second an array of dependencies.
+//  useEffect()
+
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
     setSearchField(searchFieldString);
-  }
+  };
 
   handleOnChange = (event) => {
     this.setState( () => { 
-      return {searchedText: event.target.value.toLowerCase()}
+      return {searchedText: event.target.value.toLocaleLowerCase()};
     }
-    )};
+    )
+  };
 
   return (
           <div className="App">
