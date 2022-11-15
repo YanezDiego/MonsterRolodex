@@ -14,19 +14,22 @@ const App = () => {
   const [monsters, setMonsters] = useState([]);
 
 // use effect takes two argument. 1. a callback FN second an array of dependencies.
-//  useEffect()
+  useEffect( () => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((users) => setMonsters(users))
+  }, [])
+
+
 
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
     setSearchField(searchFieldString);
   };
 
-  handleOnChange = (event) => {
-    this.setState( () => { 
-      return {searchedText: event.target.value.toLocaleLowerCase()};
-    }
-    )
-  };
+  const filteredMonsters = monsters.filter((monster) => {
+    return monster.name.toLowerCase().includes(searchField);
+  });
 
   return (
           <div className="App">
