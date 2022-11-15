@@ -12,7 +12,7 @@ const App = () => {
   //setting up state hook
   const [searchField, setSearchField] = useState('');
   const [monsters, setMonsters] = useState([]);
-
+  const [filteredMonsters, setFilterMonsters] = useState(monsters);
 // use effect takes two argument. 1. a callback FN second an array of dependencies.
   useEffect( () => {
     fetch("https://jsonplaceholder.typicode.com/users")
